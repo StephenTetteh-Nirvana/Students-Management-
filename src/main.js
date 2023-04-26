@@ -1,6 +1,7 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
+import{getFirestore,collection} from 'firebase/firestore'
 
 // Import the functions you need from the SDKs you need
 
@@ -27,6 +28,10 @@ const firebaseConfig = {
 // Initialize Firebase
 
 initializeApp(firebaseConfig);
+
+const db=getFirestore()
+const ColRef=collection(db,"students-data")
+export default ColRef;
 
 
 createApp(App)

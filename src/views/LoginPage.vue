@@ -4,7 +4,7 @@
             <img class="icon-image" src="../images/user.png" />
             <!-- <h2>Admin</h2> -->
         </div>
-        <p  v-if="errMsg">{{errMsg}}</p>
+        <p  class="message" v-if="errMsg">{{errMsg}}</p>
         <div class="input-class">  
         <input type="text" placeholder="Enter Email..."  v-model="email" />
         </div>
@@ -46,30 +46,31 @@ import{getAuth,signInWithEmailAndPassword} from 'firebase/auth'
     //  })
       
 
-            function LogIn(){
-                signInWithEmailAndPassword(auth,email.value,password.value)
-               .then((data)=>{
-                  console.log(data)
-                  alert('Successfully Logged In')
-                  console.log('Success')
-                  router.replace('/database')
-               })
-               .catch((error)=>{
-                alert(error.message)
-                console.log(error.code)
-                if (error.code === 'auth/invalid-email') {
-                     errMsg.value="The Email is incorrect"
-                    } else if (error.code === 'auth/wrong-password') {
-                        errMsg.value="The Password is incorrect"
-                    } else if (error.code === 'auth/user-not-found') {
-                        errMsg.value="No User was Found"
-                    } else {
-                      (error.code==='auth/network-request-failed')
-                      errMsg.value="Please Check Your Internet Connection"
-                    }
-  });
-  
+    async function LogIn(){
+          await signInWithEmailAndPassword(auth,email.value,password.value)
+   .then((data)=>{
+      console.log(data)
+      alert('Successfully Logged In')
+      console.log('Success')
+      router.replace('/database')
+   })
+   .catch((error)=>{
+    alert(error.message)
+    console.log(error.code)
+    if (error.code === 'auth/invalid-email') {
+         errMsg.value="The Email is incorrect"
+        } else if (error.code === 'auth/wrong-password') {
+            errMsg.value="The Password is incorrect"
+        } else if (error.code === 'auth/user-not-found') {
+            errMsg.value="No User was Found"
+        } else {
+          (error.code==='auth/network-request-failed')
+          errMsg.value="Please Check Your Internet Connection"
         }
+})
+
+
+ }
         return{
             email,
             password,
@@ -100,6 +101,11 @@ form{
     position:relative;
     top:38%;
     color:white;
+}
+.message{
+    color:red;
+    font-size:20px;
+    text-transform:uppercase;
 }
 .icon-container{
     width:30px;
@@ -173,19 +179,19 @@ button{
   /* background-position:0% 50%; */
 
 
-@keyframes fadeIn{
+/* @keyframes fadeIn{
     from{opacity:0;}
     to{opacity:1;}
-}
+} */
 
 /* @keyframes input{
     from{left:-100%}
     to{left:-0%}
 } */
-@keyframes fallIn{
+/* @keyframes fallIn{
     from{top:-100%}
     to{top:0%}
-}
+} */
 
 footer{
     position:relative;

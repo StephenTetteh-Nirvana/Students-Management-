@@ -1,5 +1,5 @@
 <template>
-   <h1>Students <br /> Payment <br/>System</h1>
+   <h1>Students <br /> Record <br/> Management <br/> System</h1>
 <router-link class="route" to="/login"><button>Proceed</button></router-link>
 </template>
 

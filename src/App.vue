@@ -10,28 +10,28 @@
 
 
 <script>
-// import{useRoute,useRouter} from 'vue-router'
-// import{getAuth,onAuthStateChanged} from 'firebase/auth'
-// import {onBeforeMount} from 'vue'
+import{useRoute,useRouter} from 'vue-router'
+import{getAuth,onAuthStateChanged} from 'firebase/auth'
+import {onBeforeMount} from 'vue'
 
 export default {
   name: 'App',
-//   setup(){
-//     const router=useRouter()
-//     const route=useRoute()
-//     const auth=getAuth()
+  setup(){
+    const router=useRouter()
+    const route=useRoute()
+    const auth=getAuth()
 
-//     onBeforeMount(()=>{
-//       onAuthStateChanged(auth, (user) => {
-//         if(!user){
-//           router.replace('/')
-//         }else if(route.path=="/login" || route.path=="/register"){
-//               router.replace('/database')
-//         }
-//       }
-//       )
-//     })
-//   }
+    onBeforeMount(()=>{
+      onAuthStateChanged(auth, (user) => {
+        if(!user){
+          router.replace('/')
+        }else if(route.path=="/login" || route.path=="/register"){
+              router.replace('/database')
+        }
+      }
+      )
+    })
+  }
 }
 
 </script>
