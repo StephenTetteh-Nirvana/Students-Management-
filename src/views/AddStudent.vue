@@ -1,12 +1,12 @@
 <template>
-    <form class="edit-table">
+    <form class="edit-table" @submit.prevent="create">
         <h1 class="header">Add Student</h1>
         <div class="input-group">
             <input type="text" placeholder="Enter Name" v-model="name"/><br/>
-            <input type="text" placeholder="Enter Class" v-model="student_class"/><br/>
-            <input type="text" placeholder="Date of Admission" v-model="date"/><br/>
+            <input type="text" placeholder="Enter Class" v-model="date"/><br/>
+            <input type="text" placeholder="Date of Admission" v-model="admission"/><br/>
        </div>
-        <button @click="create">Add Student</button>
+        <button>Add Student</button>
     </form>
 
 </template>
@@ -14,42 +14,68 @@
 
 <script>
 import {ref} from 'vue'
-import ColRef from "../main.js"
-import{addDoc} from 'firebase/firestore'
 import {useRouter} from 'vue-router'
+import {addDoc,collection} from 'firebase/firestore'
+import {db} from '@/main.js'
+
+// const colRef=collection(db,"students-data")
+
     export default {
         setup(){
-        const name = ref('')
-        const student_class = ref('')
-        const date=ref('')
+        const name=ref("")
+         const date=ref("")
+         const admission=ref("")
         const router=useRouter()
-        
 
-       function create(){
-           addDoc(ColRef,{
-                name:name.value,
-                student_class:student_class.value,
-                date:date.value
-            })
-        .then(()=>{
-        console.log('Success')
-        alert('Document Added')
-        router.push('/database')
-        })
-        .catch((err)=>{
-            console.log(err.message)
-        });
+       function create() {
+            console.log("Name:", name.value)
+            console.log("Date:", date.value)
+            console.log("Admission date:", admission.value)
+
+        addDoc(collection(db, "students-data"), {
+                Name: name.value,
+                Date:date.value,
+                Admission:admission.value
+                })
+                .then(()=>{
+                    console.log("Succesfully added")
+                    router.push('/database')
+                })
+                .catch((error)=>{
+                    console.log(error)
+                })
+            }
+
+            
+        // async function create(){
+        //                  await  addDoc(collection(db, "students-data"), {
+        //                             name: name.value,
+        //                             date: date.value,
+        //                             admission:admission.value
+        //                             })
+        //      .then(()=>{
+        //         console.log('success')
+        //         router.push('/database')
+        //      })
+        //      .catch((error)=>{
+        //         console.log(error.message)
+        //      })
+                               
+        //     }
+            
+
+                return{
+                    name,
+                    date,
+                    admission,
+                    router,
+                    create
+                    }
 
         }
         
-         return{
-            name,
-            student_class,
-            date,
-            create
-         }
-        }
-    }
+        
+}
 </script>
 
 <style scoped>

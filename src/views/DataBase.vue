@@ -12,6 +12,13 @@
             <div class="head-3">
                 <h2>Date Of Admission</h2>
             </div>
+        <!-- <table>
+            <tr v-for="(student,index) in students" :key="index">
+                <td>{{ student.name }}</td>
+                <td>{{student.date}}</td>
+                <td>{{ student.admission }}</td>
+            </tr>
+        </table> -->
           
         </div>
             <div class="info">
@@ -28,14 +35,29 @@
 import{onMounted,ref} from 'vue'
 import{getAuth,onAuthStateChanged,signOut} from 'firebase/auth'
 import {useRouter} from 'vue-router'
+// import{getDocs,collection} from 'firebase/firestore'
+// import{db} from '@/main.js'
     export default {
         setup(){
             const loggedIn = ref(true)
             const router = useRouter()
             const auth = getAuth()
 
-            onMounted(()=>{
-                onAuthStateChanged(auth,(user)=>{
+            // const students = ref([]);
+
+            // onMounted(async () => {
+            // const querySnapshot = await getDocs(collection(db, 'students-data'));
+            // querySnapshot.forEach((doc) => {
+            //     students.value.push({
+            //     id: doc.id,
+            //     name: doc.data().name,
+            //     date: doc.data().date,
+            //     admission: doc.data().admission,
+            //     });
+            // });
+
+        onMounted(()=>{
+            onAuthStateChanged(auth,(user)=>{
                    if(user){
                     loggedIn.value=true;
                    } 
@@ -43,7 +65,14 @@ import {useRouter} from 'vue-router'
                     loggedIn.value=false;
                    }
                 })
-            })
+        })       
+
+            return { 
+                // students,
+                LogOut,
+                router
+             };
+
 
             function LogOut(){
                 signOut(auth)
@@ -53,10 +82,7 @@ import {useRouter} from 'vue-router'
                 })
             }
 
-            return{
-                LogOut,
-                router,
-            }
+           
         }
     }
 </script>
