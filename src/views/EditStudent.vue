@@ -8,7 +8,14 @@
 
        </div>
         <button>Done</button>
-        <button class="btn"><router-link class="route" to="/delete">Delete Student</router-link></button>
+        <div class="buttons">
+            <div>
+                <button class="btn1"><router-link class="route" to="/database">Back To DataBase</router-link></button>
+            </div>
+            <div>
+             <button class="btn"><router-link class="route" to="/delete">Delete Student</router-link></button>
+            </div>
+        </div>
     </form>
 
 </template>
@@ -102,17 +109,37 @@ button{
     font-size:15px;
     cursor:pointer;
  }
+ .buttons{
+    /* border:1px solid white; */
+    height:100px;
+    margin-top:10px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+
+ } 
+ .btn1{
+    background:transparent; 
+    color:white;
+    text-align:center;
+    width:45%;
+    padding:8px;
+    border-radius:10px;
+    border:1px solid yellow;
+    margin-top:50px;
+    font-size:15px;
+    cursor:pointer;
+ }
  .btn{
     background:red; 
     color:white;
     text-align:center;
-    width:18%;
-    height:35px;
-    /* padding:10px 30px; */
+    width:45%;
+    /* height:35px; */
+    padding:10px;
     border-radius:3px;
     border:none;
     margin-top:50px;
-   margin-left:85%;
+   margin-left:50%;
     font-size:15px;
     cursor:pointer;
  }

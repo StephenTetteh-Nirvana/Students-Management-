@@ -43,7 +43,7 @@ import {useRouter} from 'vue-router'
             const router = useRouter()
             const auth = getAuth()
 
-            // const students = ref([]);
+            const students = ref([]);
 
             // onMounted(async () => {
             // const querySnapshot = await getDocs(collection(db, 'students-data'));
@@ -68,7 +68,7 @@ import {useRouter} from 'vue-router'
         })       
 
             return { 
-                // students,
+                students,
                 LogOut,
                 router
              };
