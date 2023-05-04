@@ -7,7 +7,8 @@
         <input type="text" placeholder="Date of Admission" v-model="date"/><br/>
 
        </div>
-        <button>Delete </button>
+        <button>Delete</button>
+        <button class="btn"><router-link class="route" to="/add">Add Student</router-link></button>
     </form>
 
 </template>
@@ -71,5 +72,23 @@ button{
    margin-left:40px;
     font-size:15px;
     cursor:pointer;
+ }
+ .btn{
+    background:rgb(3, 201, 3); 
+    color:white;
+    text-align:center;
+    width:15%;
+    height:35px;
+    /* padding:10px 30px; */
+    border-radius:3px;
+    border:none;
+    margin-top:50px;
+   margin-left:85%;
+    font-size:15px;
+    cursor:pointer;
+ }
+ .route{
+    text-decoration:none;
+    color:white;
  }
 </style>

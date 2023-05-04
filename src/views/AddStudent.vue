@@ -7,8 +7,8 @@
             <input type="text" placeholder="Date of Admission" v-model="admission"/><br/>
        </div>
         <button>Add Student</button>
+        <button class="btn"><router-link class="route" to="/edit">Edit Student</router-link></button>
     </form>
-
 </template>
 
 
@@ -33,9 +33,9 @@ import {db} from '@/main.js'
             console.log("Admission date:", admission.value)
 
         addDoc(collection(db, "students-data"), {
-                Name: name.value,
-                Date:date.value,
-                Admission:admission.value
+            Name: name.value,
+            Date:date.value,
+            Admission:admission.value
                 })
                 .then(()=>{
                     console.log("Succesfully added")
@@ -117,5 +117,23 @@ button{
    margin-left:40px;
     font-size:15px;
     cursor:pointer;
+ }
+ .btn{
+    background:rgb(53, 64, 216); 
+    color:white;
+    text-align:center;
+    width:15%;
+    height:35px;
+    /* padding:10px 30px; */
+    border-radius:3px;
+    border:none;
+    margin-top:50px;
+   margin-left:85%;
+    font-size:15px;
+    cursor:pointer;
+ }
+ .route{
+    text-decoration:none;
+    color:white;
  }
 </style>
