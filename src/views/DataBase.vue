@@ -6,37 +6,46 @@
         
             </div>
             <div class="head-2">
-                <h2>Class</h2>
+                <h2>Level</h2>
             </div>
            
             <div class="head-3">
                 <h2>Date Of Admission</h2>
             </div>
-        <!-- <table>
-            <tr v-for="(student,index) in students" :key="index">
-                <td>{{ student.name }}</td>
-                <td>{{student.date}}</td>
-                <td>{{ student.admission }}</td>
+        <table class="tab">
+            <tr class="tr-head" v-for="{id,name,level,admission} in students" :key="id">
+                <td class="name">{{ name }}</td>
+                <td class="level">{{level}}</td>
+                <td class="admission">{{admission}}</td>
+
+                <td class="edit-td">
+                    <router-link to="/edit">
+                        <button class="edit-btn" >Edit</button>
+                    </router-link>
+                </td>
+                <td class="del-td">
+                    <button class="del-btn" >Delete</button>
+                </td>
             </tr>
-        </table> -->
+            <button class="btn-logout" @click="LogOut">Log Out</button>
+        </table>
           
         </div>
             <div class="info">
-                <button class="btn1"><router-link class="route-1" to="/add">Add</router-link></button>
-                <button class="btn2" ><router-link class="route-2" to="/edit">Edit</router-link></button>
-                <button class="btn3"><router-link class="route-3" to="/delete">Delete</router-link></button>
+                <button class="btn1"><router-link class="route-1" to="/add">Add New Student</router-link></button>
            </div>
-       </div>
+   </div>
      
-      <button class="btn-logout" @click="LogOut">Log Out</button>
+      
+      
 </template>
 
 <script>
 import{onMounted,ref} from 'vue'
 import{getAuth,onAuthStateChanged,signOut} from 'firebase/auth'
 import {useRouter} from 'vue-router'
-// import{getDocs,collection} from 'firebase/firestore'
-// import{db} from '@/main.js'
+import{onSnapshot,collection} from 'firebase/firestore'
+import{db} from '@/main.js'
     export default {
         setup(){
             const loggedIn = ref(true)
@@ -45,18 +54,7 @@ import {useRouter} from 'vue-router'
 
             const students = ref([]);
 
-            // onMounted(async () => {
-            // const querySnapshot = await getDocs(collection(db, 'students-data'));
-            // querySnapshot.forEach((doc) => {
-            //     students.value.push({
-            //     id: doc.id,
-            //     name: doc.data().name,
-            //     date: doc.data().date,
-            //     admission: doc.data().admission,
-            //     });
-            // });
-
-        onMounted(()=>{
+        onMounted(async()=>{
             onAuthStateChanged(auth,(user)=>{
                    if(user){
                     loggedIn.value=true;
@@ -65,6 +63,22 @@ import {useRouter} from 'vue-router'
                     loggedIn.value=false;
                    }
                 })
+
+                onSnapshot(collection(db,"students"),(querySnapshot) => {
+                 const s_data = []
+                    querySnapshot.forEach((doc) => {
+                       const studies = {
+                        id:doc.id,
+                        name:doc.data().name,
+                        level:doc.data().level,
+                        admission:doc.data().admission
+                       }
+                       s_data.push(studies)
+                    //    console.log(doc.id, " => ", doc.data().name);
+                    })
+                    students.value = s_data
+                      
+                    });
         })       
 
             return { 
@@ -79,6 +93,9 @@ import {useRouter} from 'vue-router'
                 .then(()=>{
                     console.log('User Logged Out')
                     router.replace('/login')
+                })
+                .catch((err)=>{
+                    alert(err)
                 })
             }
 
@@ -109,6 +126,76 @@ import {useRouter} from 'vue-router'
     top:30%;
     /* line-height:1rem; */
     /* border:1px solid black; */
+}
+.tab{
+    /* border:1px solid white; */
+    margin-top:20px;
+    width:295%;
+    /* height:100vh; */
+    /* font-weight:bolder; */
+   
+}
+.tr-head{
+    /* border:1px solid white; */
+    margin-top:10px;
+}
+.name{
+    /* border:1px solid white; */
+    width:20%;
+    font-size:20px;
+    padding-left:10px;
+}
+.level{
+    /* border:1px solid white; */
+    /* padding-right:100px; */
+    width:10%;
+    font-size:20px;
+}
+.admission{
+    /* border:1px solid white; */
+    width:10%;
+    text-align:center;
+    font-size:20px;
+    padding-left:40px;
+}
+.edit-td{
+    /* border:1px solid white; */
+    width:3%;
+}
+.edit-btn{
+    text-align:center;
+    background:rgb(86, 97, 245); 
+    color:white;
+    border-radius:5px;
+    border:none;
+    margin-bottom:10px;
+     margin-top:10px;
+    /* margin-left:20px;  */
+    /* padding-left:10px; */
+    cursor:pointer;
+    padding:10px 20px;
+}
+.edit-btn:hover{
+  background-color:rgb(53, 64, 216);
+}
+.del-btn{
+    text-align:center;
+    background-color:rgb(255, 57, 57);
+    color:white;
+    border-radius:5px;
+    margin-left:20px;
+    margin-bottom:10px;
+    border:none;
+    margin-top:10px;
+    cursor:pointer;
+    padding:10px 10px;
+}
+.del-btn:hover{
+    background-color:red;
+}
+.del-td{
+    /* border:1px solid white; */
+    width:2%;
 }
 .head-1{
     margin-top:10px;
@@ -147,18 +234,11 @@ import {useRouter} from 'vue-router'
     text-decoration:none;
     color:white;
 }
-.route-2{
-    text-decoration:none;
-    color:white;
-}
-.route-3{
-    text-decoration:none;
-    color:white;
-}
+
 .btn-logout{
     position:relative;
     left:35%;
-    top:35%;
+    top:50%;
     padding:5px 20px;
 }
 .btn1{
@@ -171,30 +251,4 @@ import {useRouter} from 'vue-router'
     padding:10px 10px;
     margin-right:10px;
 }
-.btn2{
-    text-align:center;
-    background:rgb(53, 64, 216); 
-    color:white;
-    border-radius:5px;
-    border:none;
-    /* width:10px; */
-    /* margin-top:10px; */
-    cursor:pointer;
-    padding:10px 10px;
-    margin-right:10px;
-
-}
-.btn3{
-    text-align:center;
-    background-color:red;
-    color:white;
-    border-radius:5px;
-    border:none;
-    /* margin-top:10px; */
-    cursor:pointer;
-    padding:10px 10px;
-    margin-right:5px;
-
-}
-
 </style>

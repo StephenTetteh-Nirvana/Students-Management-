@@ -1,19 +1,16 @@
 <template>
-    <form class="edit-table" @submit.prevent="edit ">
+    <form class="edit-table" @submit.prevent="edit">
         <h1 class="header">Edit Student</h1>
         <div class="input-group">
-        <input type="text" placeholder="Enter Name" v-model="name"/><br/>
-        <input type="text" placeholder="Enter Date" v-model="date"/><br/>
-        <input type="text" placeholder="Enter Admission" v-model="admission"/><br/>
+        <input type="text" placeholder="Enter Name...." v-model="name"/><br/>
+        <input type="text" placeholder="Enter Level...." v-model="level"/><br/>
+        <input type="text" placeholder="Enter Date of Admission....." v-model="admission"/><br/>
 
        </div>
         <button>Done</button>
         <div class="buttons">
             <div>
-                <button class="btn1"><router-link class="route" to="/database">Back To DataBase</router-link></button>
-            </div>
-            <div>
-             <button class="btn"><router-link class="route" to="/delete">Delete Student</router-link></button>
+             <button class="btn1"><router-link class="route" to="/database">Back To DataBase</router-link></button>
             </div>
         </div>
     </form>
@@ -24,49 +21,58 @@
 <script>
 import{ref} from 'vue'
 import {useRouter} from 'vue-router'
-import{doc,updateDoc,serverTimestamp} from 'firebase/firestore'
+import{updateDoc,serverTimestamp,doc} from 'firebase/firestore'
 import {db} from '@/main.js'
     export default {
         setup(){
           
             const name = ref('')
-            const date = ref('')
+            const level = ref('')
             const admission = ref('')        
 
             const router = useRouter()
+            // const route = useRoute()
 
-            const colRef = doc(db, "students-data", "DC");
-
+            // const docId= route.params.id
 
         function edit(){
-                updateDoc(colRef, {
-                    Name: name.value,
-                    Date:date.value,
-                    Admission:admission.value,
-
-                    updatedAt:serverTimestamp()
+            console.log("Name:", name.value)
+            console.log("Level:", level.value)
+            console.log("Admission date:", admission.value)
+                  
+            const docRef = doc(db, 'students');
+        
+                    updateDoc(docRef, {
+                        name: name.value,
+                        level: level.value,
+                        admission: admission.value,
+                        updatedAt: serverTimestamp()
                     })
 
                     .then(()=>{
                         console.log('Document Updated')
-                        alert('Update SuccessFul')
+                        router.push('/database')
                     })
                     .catch((error)=>{
                         console.log(error)
-                    })
+                    });
             }
           
+            
+  
 
 
             return{
                 name,
-                date,
-                edit,
+                level,
                 admission,
-                router
+                edit,
+                router,
+                // route
             }
         }
     }
+
 </script>
 
 <style scoped>

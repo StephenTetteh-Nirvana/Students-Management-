@@ -2,9 +2,9 @@
     <form class="edit-table" @submit.prevent="create">
         <h1 class="header">Add Student</h1>
         <div class="input-group">
-            <input type="text" placeholder="Enter Name" v-model="name"/><br/>
-            <input type="text" placeholder="Enter Class" v-model="date"/><br/>
-            <input type="text" placeholder="Date of Admission" v-model="admission"/><br/>
+            <input type="text" placeholder="Enter Name..." v-model="name"/><br/>
+            <input type="text" placeholder="Enter Level..." v-model="level"/><br/>
+            <input type="text" placeholder="Enter Date of Admission...." v-model="admission"/><br/>
        </div>
         <button>Add Student</button>
         <div class="buttons">
@@ -30,19 +30,19 @@ import {db} from '@/main.js'
     export default {
         setup(){
         const name=ref("")
-         const date=ref("")
+         const level=ref("")
          const admission=ref("")
         const router=useRouter()
 
        function create() {
             console.log("Name:", name.value)
-            console.log("Date:", date.value)
+            console.log("Level:", level.value)
             console.log("Admission date:", admission.value)
 
-        addDoc(collection(db, "students-data"), {
-            Name: name.value,
-            Date:date.value,
-            Admission:admission.value
+        addDoc(collection(db, "students"), {
+            name: name.value,
+            level:level.value,
+            admission:admission.value
                 })
                 .then(()=>{
                     console.log("Succesfully added")
@@ -73,7 +73,7 @@ import {db} from '@/main.js'
 
                 return{
                     name,
-                    date,
+                    level,
                     admission,
                     router,
                     create
