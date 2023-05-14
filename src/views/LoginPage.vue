@@ -1,16 +1,19 @@
 <template>
     <form @submit.prevent>
+        <h1>Login Your Account</h1>
         <div class="icon-container">
             <img class="icon-image" src="../images/user.png" />
             <!-- <h2>Admin</h2> -->
         </div>
         <p  class="message" v-if="errMsg">{{errMsg}}</p>
+    <div class="input-box">
         <div class="input-class">  
         <input type="text" placeholder="Enter Email..."  v-model="email" />
         </div>
-        <div class="input-class">
-            <input type="password" placeholder="Enter Password..." v-model="password" />
+        <div class="input-class1">  
+        <input type="password" placeholder="Enter Password..." v-model="password" />
         </div>
+    </div>
         <button @click="LogIn">Log In</button>
         <p class="Register">Need an account?<router-link to="/register">Register Here</router-link></p>
         <footer>Copyright&copy;2023</footer>
@@ -91,6 +94,12 @@ import{getAuth,signInWithEmailAndPassword} from 'firebase/auth'
     margin:0px;
     padding:0px;
 }
+h1{
+    font-family:Arial, Helvetica, sans-serif;
+    position:relative;
+    top:19%;
+    color:white;
+}
 form{
     text-align:center;
     height:100vh;
@@ -116,12 +125,9 @@ form{
 .icon-image{
     width:80px;
 }
-.input-class{
-    /* left:-100%; */
-    text-align:center;
+.input-box{
     position:relative;
     top:30%;
-    /* animation: input 0.5s linear 1s forwards; */
 }
 input[type=text]{
     padding:10px;
@@ -200,4 +206,58 @@ footer{
     font-style:bold;
     font-size:1.3rem;
 }
+
+@media (max-width:768px){
+    h1{
+        position:relative;
+         top:10%;
+         font-size:35px;
+    }
+    .icon-container{
+    position:relative;
+    left:40%;
+    top:15%;
+}
+    .icon-image{
+       width:60px;
+       /* border:1px solid black; */
+}
+.input-box{
+    height:100px;
+    width:80%;
+    position:absolute;
+    top:40%;
+    left:10%;
+}
+input[type=text]{
+    padding:10px;
+    width:300px;
+     /* border:1px solid black; */
+}
+input[type=password]{
+    padding:10px;
+    width:300px;
+    /* margin-bottom:40px; */
+
+}
+button{
+   text-align:center;
+    position:relative;
+    top:40%;
+    left:38%;
+    display:block;
+    width:100px;
+    font-size:1rem;
+    padding:10px;
+    border-radius:5px; 
+    font-weight:bold;
+    color:white;
+   background:rgb(53, 64, 216); 
+}
+.Register{
+    position:relative;
+    top:45%;
+}
+}
+
 </style>

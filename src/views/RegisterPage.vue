@@ -1,12 +1,19 @@
 <template>
         <form @submit.prevent>
+            <p class="p-error" v-if="errMsg">{{ errMsg }}</p>
             <h1>Create An Account</h1>
+            <div class="icon-container">
+            <img class="icon-image" src="../images/user.png" />
+            <!-- <h2>Admin</h2> -->
+        </div>
+         <div class="input-box">
             <div class="input-class">
                 <input type="text" placeholder="Enter Valid Email..."  v-model="email" >
-                <br/>
+            </div>
+            <div class>
                 <input type="password" placeholder="Password should be atleast 6 characters..." v-model="password" />
-                <p  v-if="errMsg">{{ errMsg }}</p>
            </div>
+        </div>
         <button @click="register">Sign Up</button>
         <p class="Register">Already got an account?<router-link to="/login">Tap here to Login</router-link></p>
         <footer>Copyright&copy;2023</footer>
@@ -109,15 +116,23 @@ form{
     top:38%;
     color:white;
 }
-.input-class{
-    /* left:-100%;  */
-     text-align:center;
+.icon-container{
+    width:30px;
     position:relative;
-    top:30%; 
-     /* animation: input 0.5s linear 1s forwards; */
+    left:47%;
+    top:27%;
 }
-.input-class .p{
-    color:white;
+.icon-image{
+    width:80px;
+}
+.input-box{
+    position:relative;
+    top:30%;
+}
+.p-error{
+    border:1px solid black;
+    color:red;
+    text-transform:uppercase;
 }
 input[type=text]{
     padding:10px;
@@ -154,5 +169,58 @@ footer{
     color:white;
     font-style:bold;
     font-size:1.3rem;
+}
+
+@media (max-width:768px){
+h1{
+        position:relative;
+         top:10%;
+         font-size:35px;
+    }
+    .icon-container{
+    position:relative;
+    left:40%;
+    top:15%;
+}
+    .icon-image{
+       width:60px;
+       /* border:1px solid black; */
+}
+.input-box{
+    height:100px;
+    width:80%;
+    position:absolute;
+    top:40%;
+    left:10%;
+}
+input[type=text]{
+    padding:10px;
+    width:300px;
+     /* border:1px solid black; */
+}
+input[type=password]{
+    padding:10px;
+    width:300px;
+    /* margin-bottom:40px; */
+
+}
+button{
+   text-align:center;
+    position:relative;
+    top:40%;
+    left:38%;
+    display:block;
+    width:100px;
+    font-size:1rem;
+    padding:10px;
+    border-radius:5px; 
+    font-weight:bold;
+    color:white;
+   background:rgb(53, 64, 216); 
+}
+.Register{
+    position:relative;
+    top:45%;
+}
 }
 </style>

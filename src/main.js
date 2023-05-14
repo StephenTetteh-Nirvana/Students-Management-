@@ -31,8 +31,19 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 const db=getFirestore(app)
+// const colRef = collection(db,"students")
 
-
+// getDocs(colRef)
+// .then((data)=>{
+//    let students = [];
+//    data.docs.forEach(document=>{
+//     students.push({...document.data(),id:document.id})
+//    });
+//    console.log(students);
+// })
+// .catch((error)=>{
+//   console.log(error);
+// })
 export {
   db,
 }

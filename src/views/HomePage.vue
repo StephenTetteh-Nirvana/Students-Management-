@@ -1,6 +1,6 @@
 <template>
    <h1>Students <br /> Record <br/> Management <br/> System</h1>
-<router-link class="route" to="/login"><button>Proceed</button></router-link>
+   <router-link class="route" to="/login"><button class="btn-class">Proceed</button></router-link>
 </template>
 
 <script>
@@ -36,7 +36,7 @@ h1{
     color:white;
     margin-left:80px;
 }
-button{
+.btn-class{
  text-align:center;
     display:block;
     margin-left:80px;
@@ -56,7 +56,7 @@ button{
 
     animation:fadeIn 0.5s linear 0.6s forwards;
 }
-button:hover{
+.btn-class:hover{
     color:black;
     background-position:0% 50%;
 }
@@ -68,5 +68,33 @@ button:hover{
     text-decoration:none;
     color:white;
     font-size:15px;
+}
+
+@media (max-width:768px){
+    h1{
+    font-size:50px;
+    margin-top:80px;
+    margin-left:20px;
+    line-height:4rem;
+    }
+    .btn-class{
+    text-align:center;
+    display:block;
+    margin-left:20px;
+    margin-top:30px;
+    width:150px;
+    font-size:1rem;
+    padding:10px;
+    text-transform:uppercase; 
+    color:white;
+    cursor:pointer;
+    opacity:1;
+    background:transparent;
+}
+.route{
+    text-decoration:none;
+    color:white;
+    font-size:15px;
+}
 }
 </style>

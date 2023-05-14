@@ -14,17 +14,17 @@
             </div>
         <table class="tab">
             <tr class="tr-head" v-for="{id,name,level,admission} in students" :key="id">
-                <td class="name">{{ name }}</td>
+                <td class="name">{{ name }} </td>
                 <td class="level">{{level}}</td>
                 <td class="admission">{{admission}}</td>
 
                 <td class="edit-td">
-                    <router-link to="/edit">
+                    <router-link to="`/edit/${id}`">
                         <button class="edit-btn" >Edit</button>
                     </router-link>
                 </td>
                 <td class="del-td">
-                    <button class="del-btn" >Delete</button>
+                    <button class="del-btn" @click="deleteStudent">Delete</button>
                 </td>
             </tr>
             <button class="btn-logout" @click="LogOut">Log Out</button>
@@ -43,16 +43,43 @@
 <script>
 import{onMounted,ref} from 'vue'
 import{getAuth,onAuthStateChanged,signOut} from 'firebase/auth'
-import {useRouter} from 'vue-router'
-import{onSnapshot,collection} from 'firebase/firestore'
+import {useRouter,useRoute} from 'vue-router'
+import{onSnapshot,collection,deleteDoc,doc} from 'firebase/firestore'
 import{db} from '@/main.js'
     export default {
         setup(){
             const loggedIn = ref(true)
             const router = useRouter()
+            const route= useRoute()
             const auth = getAuth()
 
             const students = ref([]);
+
+            const docId = ref(route.params.id)
+
+                    function deleteStudent() {
+                        console.log("Deleting document with ID:", docId.value)
+                    const docRef = doc(db, 'students', docId.value)
+                    deleteDoc(docRef)
+                        .then(() => {
+                        console.log('Document deleted successfully.')
+                        router.push('/database')
+                        })
+                        .catch((error) => {
+                        console.error('Error deleting document: ', error)
+                        })
+                    }
+                    function LogOut(){
+                            signOut(auth)
+                            .then(()=>{
+                                console.log('User Logged Out')
+                                router.replace('/login')
+                            })
+                            .catch((err)=>{
+                                alert(err)
+                            })
+                        }
+                    
 
         onMounted(async()=>{
             onAuthStateChanged(auth,(user)=>{
@@ -64,6 +91,8 @@ import{db} from '@/main.js'
                    }
                 })
 
+
+
                 onSnapshot(collection(db,"students"),(querySnapshot) => {
                  const s_data = []
                     querySnapshot.forEach((doc) => {
@@ -74,7 +103,7 @@ import{db} from '@/main.js'
                         admission:doc.data().admission
                        }
                        s_data.push(studies)
-                    //    console.log(doc.id, " => ", doc.data().name);
+                       console.log(studies);
                     })
                     students.value = s_data
                       
@@ -84,24 +113,16 @@ import{db} from '@/main.js'
             return { 
                 students,
                 LogOut,
+                deleteStudent,
+                route,
                 router
-             };
+             }
 
-
-            function LogOut(){
-                signOut(auth)
-                .then(()=>{
-                    console.log('User Logged Out')
-                    router.replace('/login')
-                })
-                .catch((err)=>{
-                    alert(err)
-                })
-            }
+           
 
            
         }
-    }
+}
 </script>
 
 <style scoped>

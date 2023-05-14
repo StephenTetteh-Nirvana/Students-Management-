@@ -72,4 +72,10 @@ h1{
     height: 100vh;
     width: 100%;
 }
+
+@media (max-width:768px){
+  h1{
+    font-size:35px;
+  }
+}
 </style>

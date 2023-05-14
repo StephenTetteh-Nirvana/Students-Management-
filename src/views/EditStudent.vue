@@ -1,5 +1,5 @@
 <template>
-    <form class="edit-table" @submit.prevent="edit">
+    <form class="edit-table" @submit.prevent>
         <h1 class="header">Edit Student</h1>
         <div class="input-group">
         <input type="text" placeholder="Enter Name...." v-model="name"/><br/>
@@ -7,7 +7,7 @@
         <input type="text" placeholder="Enter Date of Admission....." v-model="admission"/><br/>
 
        </div>
-        <button>Done</button>
+        <button @click="edit">Done</button>
         <div class="buttons">
             <div>
              <button class="btn1"><router-link class="route" to="/database">Back To DataBase</router-link></button>
@@ -20,7 +20,7 @@
 
 <script>
 import{ref} from 'vue'
-import {useRouter} from 'vue-router'
+import {useRouter,useRoute} from 'vue-router'
 import{updateDoc,serverTimestamp,doc} from 'firebase/firestore'
 import {db} from '@/main.js'
     export default {
@@ -31,16 +31,17 @@ import {db} from '@/main.js'
             const admission = ref('')        
 
             const router = useRouter()
-            // const route = useRoute()
+            const route = useRoute()
 
-            // const docId= route.params.id
+            const docId= route.params.id
+           
 
         function edit(){
+            console.log("Updating document with ID:", docId.value)
+            const docRef = doc(db, 'students',docId.value);
             console.log("Name:", name.value)
             console.log("Level:", level.value)
             console.log("Admission date:", admission.value)
-                  
-            const docRef = doc(db, 'students');
         
                     updateDoc(docRef, {
                         name: name.value,
@@ -68,7 +69,7 @@ import {db} from '@/main.js'
                 admission,
                 edit,
                 router,
-                // route
+                route
             }
         }
     }

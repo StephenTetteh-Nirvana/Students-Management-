@@ -11,9 +11,6 @@
             <div class="child1">
                 <button class="btn1"><router-link class="route" to="/database">Back To DataBase</router-link></button>
             </div>
-            <div>
-            <button class="btn"><router-link class="route" to="/edit">Edit Student</router-link></button>
-           </div>
         </div>
     </form>
 </template>
@@ -126,7 +123,7 @@ button{
     cursor:pointer;
  }
  .buttons{
-    /* border:1px solid white; */
+ 
     height:100px;
     margin-top:10px;
     display:grid;
@@ -145,12 +142,11 @@ button{
     font-size:15px;
     cursor:pointer;
  }
- .btn{
+ /* .btn{
     background:rgb(53, 64, 216); 
     color:white;
     text-align:center;
     width:40%;
-    /* height:35px; */
     padding:10px;
     border-radius:3px;
     border:none;
@@ -158,7 +154,7 @@ button{
    margin-left:50%;
     font-size:15px;
     cursor:pointer;
- }
+ } */
  .route{
     text-decoration:none;
     color:white;
