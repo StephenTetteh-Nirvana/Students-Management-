@@ -130,7 +130,7 @@ form{
     top:30%;
 }
 .p-error{
-    border:1px solid black;
+     font-size:20px;
     color:red;
     text-transform:uppercase;
 }
@@ -165,7 +165,7 @@ button{
 
 footer{
     position:relative;
-    top:65%;
+    top:50%;
     color:white;
     font-style:bold;
     font-size:1.3rem;
@@ -183,14 +183,14 @@ h1{
     top:15%;
 }
     .icon-image{
-       width:60px;
+       width:70px;
        /* border:1px solid black; */
 }
 .input-box{
     height:100px;
     width:80%;
     position:absolute;
-    top:40%;
+    top:37%;
     left:10%;
 }
 input[type=text]{
@@ -207,7 +207,7 @@ input[type=password]{
 button{
    text-align:center;
     position:relative;
-    top:40%;
+    top:38%;
     left:38%;
     display:block;
     width:100px;
@@ -220,7 +220,21 @@ button{
 }
 .Register{
     position:relative;
-    top:45%;
+    top:43%;
+}
+.p-error{
+    position:relative;
+    top:47%;
+    color:red;
+    font-size:20px;
+    text-transform:uppercase;
+}
+footer{
+    position:relative;
+    top:70%;
+    color:white;
+    font-style:bold;
+    font-size:1.3rem;
 }
 }
 </style>

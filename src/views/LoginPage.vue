@@ -8,10 +8,10 @@
         <p  class="message" v-if="errMsg">{{errMsg}}</p>
     <div class="input-box">
         <div class="input-class">  
-        <input type="text" placeholder="Enter Email..."  v-model="email" />
+        <input type="text" placeholder="Enter Your Email..."  v-model="email" />
         </div>
         <div class="input-class1">  
-        <input type="password" placeholder="Enter Password..." v-model="password" />
+        <input type="password" placeholder="Enter Your Password..." v-model="password" />
         </div>
     </div>
         <button @click="LogIn">Log In</button>
@@ -201,7 +201,7 @@ button{
 
 footer{
     position:relative;
-    top:55%;
+    top:50%;
     color:white;
     font-style:bold;
     font-size:1.3rem;
@@ -219,14 +219,14 @@ footer{
     top:15%;
 }
     .icon-image{
-       width:60px;
+       width:70px;
        /* border:1px solid black; */
 }
 .input-box{
     height:100px;
     width:80%;
     position:absolute;
-    top:40%;
+    top:37%;
     left:10%;
 }
 input[type=text]{
@@ -243,7 +243,7 @@ input[type=password]{
 button{
    text-align:center;
     position:relative;
-    top:40%;
+    top:38%;
     left:38%;
     display:block;
     width:100px;
@@ -256,7 +256,21 @@ button{
 }
 .Register{
     position:relative;
-    top:45%;
+    top:43%;
+}
+footer{
+    position:relative;
+    top:70%;
+    color:white;
+    font-style:bold;
+    font-size:1.3rem;
+}
+.message{
+    position:relative;
+    top:35%;
+    color:red;
+    font-size:20px;
+    text-transform:uppercase;
 }
 }
 

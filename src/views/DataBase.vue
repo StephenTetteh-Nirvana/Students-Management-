@@ -1,5 +1,5 @@
 <template>
-       <div class="data">
+    <div class="data">
         <div class="table-head">
             <div class="head-1">
                 <h2>Name</h2>
@@ -272,4 +272,139 @@ import{db} from '@/main.js'
     padding:10px 10px;
     margin-right:10px;
 }
+
+
+/* Media Queries */
+
+
+@media (max-width:768px){
+.data{
+    display:grid;
+    grid-template-columns:5fr 1fr;
+    color:white;
+    /* border:1px solid white; */
+    margin-top:50px;
+    overflow:hidden;
+}
+.tab{
+    /* border:1px solid white; */
+    /* margin-top:20px; */
+    width:100%;
+    position:absolute;
+    left:2%;
+    top:20%;
+    /* height:100vh; */
+    /* font-weight:bolder; */
+   
+}
+.tr-head{
+    border:1px solid white;
+    margin-top:10px;
+}
+.table-head{
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    /* height:40px; */
+    width:60%;
+    font-size:10px;
+    /* border:1px solid white; */
+    border-bottom:none;
+}
+.info{
+    width:40%;
+    position:absolute;
+    top:13%;
+    left:75%;
+    /* border:1px solid white; */
+}
+.btn-logout{
+    position:absolute;
+    left:35%;
+    top:100%;
+    padding:5px 20px;
+}
+.btn1{
+    background:rgb(3, 201, 3); 
+    color:white;
+    border-radius:5px;
+    border:none;
+    cursor:pointer;
+    font-size:11px;
+    padding:5px 5px;
+}
+.name{
+    /* border:1px solid white; */
+    width:4%;
+    font-size:14px;
+    /* padding-left:10px; */
+}
+.level{
+    /* border:1px solid white; */
+    /* padding-right:100px; */
+    width:5%;
+    text-align:center;
+    font-size:14px;
+}
+.admission{
+    /* border:1px solid white; */
+    width:5%;
+    margin-left:20px;
+    text-align:center;
+    font-size:14px;
+    padding-left:5px;
+}
+.edit-td{
+    /* border:1px solid white; */
+    width:1%;
+}
+.edit-btn{
+    text-align:center;
+    background:rgb(86, 97, 245); 
+    color:white;
+    border-radius:5px;
+    border:none;
+    margin-bottom:10px;
+    margin-top:10px;
+    /* margin-left:30px; */
+    font-size:11px;
+    padding:5px 5px;
+}
+.del-btn{
+    text-align:center;
+    background-color:rgb(255, 57, 57);
+    color:white;
+    border-radius:5px;
+    margin-left:0px;
+    margin-bottom:10px;
+    border:none;
+    margin-top:10px;
+    font-size:11px;
+    padding:5px 5px;
+}
+.head-1{
+    position:relative;
+    right:120%;
+    border-bottom:3px solid white;
+   /* border:1px solid white; */
+
+}
+.head-2{
+   position:relative;
+    right:112%;
+    border-bottom:3px solid white;
+
+   /* border:1px solid white; */
+}
+.head-3{
+    position:relative;
+    width:170%;
+    right:160%;
+    bottom:10%;
+    top:5%;
+    text-align:center;
+    border-bottom:3px solid white;
+    /* border:1px solid white; */
+}
+}
+
 </style>

@@ -1,6 +1,7 @@
 <template>
    <h1>Students <br /> Record <br/> Management <br/> System</h1>
    <router-link class="route" to="/login"><button class="btn-class">Proceed</button></router-link>
+   <footer>Copyright&copy;2023</footer>
 </template>
 
 <script>
@@ -69,6 +70,20 @@ h1{
     color:white;
     font-size:15px;
 }
+footer{
+    position:relative;
+    top:20%;
+    text-align:center;
+    color:white;
+    font-style:bold;
+    font-size:1.3rem;
+}
+
+
+
+
+
+/* Media Queries */
 
 @media (max-width:768px){
     h1{
@@ -95,6 +110,14 @@ h1{
     text-decoration:none;
     color:white;
     font-size:15px;
+}
+footer{
+    position:relative;
+    top:36%;
+    text-align:center;
+    color:white;
+    font-style:bold;
+    font-size:1.3rem;
 }
 }
 </style>
