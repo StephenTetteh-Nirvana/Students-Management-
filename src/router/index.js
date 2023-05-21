@@ -37,7 +37,7 @@ const routes = [
   {
     path: '/edit/:studentId',
     name: 'EditStudent',
-    component: EditStudent
+    component: EditStudent,
   }
 ]
 

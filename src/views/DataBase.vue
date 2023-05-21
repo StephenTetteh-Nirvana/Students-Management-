@@ -25,11 +25,11 @@
                     <button class="del-btn" @click="deleteStudent(student.id)">Delete</button>
                 </td>
             </tr>
-            <button class="btn-logout" @click="LogOut">Log Out</button>
         </table>
           
         </div>
             <div class="info">
+                <button class="btn-logout" @click="LogOut">Log Out</button>
                 <button class="btn1"><router-link class="route-1" to="/add">Add New Student</router-link></button>
            </div>
    </div>
@@ -42,7 +42,7 @@
 import{onMounted,ref} from 'vue'
 import{getAuth,onAuthStateChanged,signOut} from 'firebase/auth'
 import {useRouter,useRoute} from 'vue-router'
-import{onSnapshot,collection,getDoc,deleteDoc,doc} from 'firebase/firestore'
+import{onSnapshot,collection,getDoc,deleteDoc,doc,orderBy,query} from 'firebase/firestore'
 import{db} from '@/main.js'
     export default {
         setup(){
@@ -69,7 +69,7 @@ import{db} from '@/main.js'
                         }
                         const navigateToEditPage = (student) => {
                                 // Access the unique ID and navigate to the EditStudent route
-                                router.push({ name: 'EditStudent', params: { studentId: student.id } });
+                                router.push({ name: 'EditStudent', params: { studentId: student.id } })
                                 }
 
               // FUNCTION THAT DELETES A SINGLE DOCUMENT
@@ -104,9 +104,9 @@ import{db} from '@/main.js'
                     loggedIn.value=false;
                    }
                 })
-
+                const studentsQuery = query(collection(db, 'students'), orderBy('name'));
           //  listens to changes and reflects them
-                onSnapshot(collection(db,"students"),(querySnapshot) => {
+                onSnapshot(studentsQuery,(querySnapshot) => {
                     s_data = []; // Clear the s_data array before updating
                     querySnapshot.forEach((doc) => {
                         const student = {
@@ -158,18 +158,18 @@ import{db} from '@/main.js'
 .info{
     /* display: grid;
     grid-template-rows: repeat(3, 1fr); */
-    width:80%;
-    height:40px;
+    width:60%;
+    height:70px;
     position:relative;
      left:25%;
-    top:30%;
     /* line-height:1rem; */
     /* border:1px solid black; */
 }
 .tab{
     /* border:1px solid white; */
+    /* border-bottom:3px solid white; */
     margin-top:20px;
-    width:295%;
+    width:290%;
     /* height:100vh; */
     /* font-weight:bolder; */
    
@@ -180,14 +180,16 @@ import{db} from '@/main.js'
 }
 .name{
     /* border:1px solid white; */
-    width:20%;
+    width:10%;
     font-size:20px;
-    padding-left:10px;
+    padding-left:20px;
 }
 .level{
     /* border:1px solid white; */
     /* padding-right:100px; */
-    width:10%;
+    width:5%;
+    text-align:center;
+    padding-left:80px;
     font-size:20px;
 }
 .admission{
@@ -195,7 +197,7 @@ import{db} from '@/main.js'
     width:10%;
     text-align:center;
     font-size:20px;
-    padding-left:40px;
+    padding-left:85px;
 }
 .edit-td{
     /* border:1px solid white; */
@@ -222,7 +224,7 @@ import{db} from '@/main.js'
     background-color:rgb(255, 57, 57);
     color:white;
     border-radius:5px;
-    margin-left:20px;
+    /* margin-left:10px; */
     margin-bottom:10px;
     border:none;
     margin-top:10px;
@@ -234,7 +236,7 @@ import{db} from '@/main.js'
 }
 .del-td{
     /* border:1px solid white; */
-    width:2%;
+    width:5%;
 }
 .head-1{
     margin-top:10px;
@@ -242,11 +244,12 @@ import{db} from '@/main.js'
 }
 .head-2{
    margin-top:10px;
-   margin-left:100px;
+   margin-left:37px;
    /* border:1px solid white; */
 }
 .head-3{
-    margin-left:20px;
+    /* border:1px solid white; */
+    margin-right:80px;
     margin-top:10px;
     text-align:center;
 }
@@ -275,10 +278,14 @@ import{db} from '@/main.js'
 }
 
 .btn-logout{
+    background:red; 
+    color:white;
+    border:none;
+    cursor:pointer;
     position:relative;
-    left:35%;
-    top:50%;
-    padding:5px 20px;
+    bottom:10%;
+    padding:5px 37px;
+    border-radius:5px;
 }
 .btn1{
     text-align:center;
@@ -287,7 +294,7 @@ import{db} from '@/main.js'
     border-radius:5px;
     border:none;
     cursor:pointer;
-    padding:10px 10px;
+    padding:5px 10px;
     margin-right:10px;
 }
 

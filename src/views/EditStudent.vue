@@ -1,8 +1,8 @@
 <template>
-    <form class="edit-table" @submit.prevent="edit(student)">
+    <form class="edit-table" @submit.prevent="edit">
         <h1 class="header">Edit Student</h1>
         <div class="input-group">
-        <input type="text" placeholder="Enter Name...." v-model="name"/><br/>
+        <input type="text" placeholder="Enter Name...." v-model="studentName"/><br/>
         <input type="text" placeholder="Enter Level...." v-model="level"/><br/>
         <input type="text" placeholder="Enter Date of Admission....." v-model="admission"/><br/>
 
@@ -33,8 +33,11 @@ import {db} from '@/main.js'
             const router = useRouter()
             const route = useRoute()
             const studentId = route.params.studentId
+            const studentName= route.params.studentName
 
+console.log(studentName,studentId)
             const studentsCollection = collection(db, "students")
+            
 
                         async function edit() {
                                 try {
@@ -62,6 +65,7 @@ import {db} from '@/main.js'
                 admission,
                 // student,
                 studentsCollection,
+                studentName,
                 studentId,
                 edit,
                 router,
