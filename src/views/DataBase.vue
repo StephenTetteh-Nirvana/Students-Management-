@@ -187,9 +187,9 @@ import{db} from '@/main.js'
 .level{
     /* border:1px solid white; */
     /* padding-right:100px; */
-    width:5%;
+    width:10%;
     text-align:center;
-    padding-left:80px;
+    padding-left:50px;
     font-size:20px;
 }
 .admission{
@@ -197,10 +197,12 @@ import{db} from '@/main.js'
     width:10%;
     text-align:center;
     font-size:20px;
-    padding-left:85px;
+    padding-left:95px;
 }
 .edit-td{
     /* border:1px solid white; */
+    /* position:relative;
+    right:5%; */
     width:3%;
 }
 .edit-btn{
@@ -236,6 +238,8 @@ import{db} from '@/main.js'
 }
 .del-td{
     /* border:1px solid white; */
+    position:relative;
+    right:4%;
     width:5%;
 }
 .head-1{
@@ -278,14 +282,14 @@ import{db} from '@/main.js'
 }
 
 .btn-logout{
-    background:red; 
+    background:red;
     color:white;
-    border:none;
-    cursor:pointer;
     position:relative;
+    border:none;
+    border-radius:5px;
     bottom:10%;
     padding:5px 37px;
-    border-radius:5px;
+    cursor:pointer;
 }
 .btn1{
     text-align:center;
