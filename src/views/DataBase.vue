@@ -13,18 +13,16 @@
                 <h2>Date Of Admission</h2>
             </div>
         <table class="tab">
-            <tr class="tr-head" v-for="{id,name,level,admission} in students" :key="id">
-                <td class="name">{{ name }} </td>
-                <td class="level">{{level}}</td>
-                <td class="admission">{{admission}}</td>
+            <tr class="tr-head" v-for="student in students" :key="student.id">
+                <td class="name">{{ student.name }} </td>
+                <td class="level">{{student.level}}</td>
+                <td class="admission">{{student.admission}}</td>
 
                 <td class="edit-td">
-                    <router-link to="`/edit/${id}`">
-                        <button class="edit-btn" >Edit</button>
-                    </router-link>
+                        <button @click="navigateToEditPage(student)" class="edit-btn">Edit</button>
                 </td>
                 <td class="del-td">
-                    <button class="del-btn" @click="deleteStudent">Delete</button>
+                    <button class="del-btn" @click="deleteStudent(student.id)">Delete</button>
                 </td>
             </tr>
             <button class="btn-logout" @click="LogOut">Log Out</button>
@@ -44,7 +42,7 @@
 import{onMounted,ref} from 'vue'
 import{getAuth,onAuthStateChanged,signOut} from 'firebase/auth'
 import {useRouter,useRoute} from 'vue-router'
-import{onSnapshot,collection,deleteDoc,doc} from 'firebase/firestore'
+import{onSnapshot,collection,getDoc,deleteDoc,doc} from 'firebase/firestore'
 import{db} from '@/main.js'
     export default {
         setup(){
@@ -52,23 +50,13 @@ import{db} from '@/main.js'
             const router = useRouter()
             const route= useRoute()
             const auth = getAuth()
-
+            let s_data = []
             const students = ref([]);
 
-            const docId = ref(route.params.id)
-
-                    function deleteStudent() {
-                        console.log("Deleting document with ID:", docId.value)
-                    const docRef = doc(db, 'students', docId.value)
-                    deleteDoc(docRef)
-                        .then(() => {
-                        console.log('Document deleted successfully.')
-                        router.push('/database')
-                        })
-                        .catch((error) => {
-                        console.error('Error deleting document: ', error)
-                        })
-                    }
+            const studentsCollection=collection(db,"students")
+            const studentId = route.params.studentId
+            
+            // FUNCTION THAT LOGS OUT THE USER
                     function LogOut(){
                             signOut(auth)
                             .then(()=>{
@@ -79,7 +67,33 @@ import{db} from '@/main.js'
                                 alert(err)
                             })
                         }
-                    
+                        const navigateToEditPage = (student) => {
+                                // Access the unique ID and navigate to the EditStudent route
+                                router.push({ name: 'EditStudent', params: { studentId: student.id } });
+                                }
+
+              // FUNCTION THAT DELETES A SINGLE DOCUMENT
+                        async function deleteStudent(student) {
+                                try{
+                                    const userDocRef= doc(studentsCollection,student)
+
+                                    const userDoc = await getDoc(userDocRef)
+
+                                    if(userDoc.exists()){
+                                        await deleteDoc(userDocRef)
+                                        console.log(`Deleted student:`, student)
+                                    }
+                                    else{
+                                        console.log('This user does exist')
+                                    }
+                                }
+                                catch(error){
+                                    console.log(error)
+                                }
+
+
+}
+
 
         onMounted(async()=>{
             onAuthStateChanged(auth,(user)=>{
@@ -91,31 +105,35 @@ import{db} from '@/main.js'
                    }
                 })
 
-
-
+          //  listens to changes and reflects them
                 onSnapshot(collection(db,"students"),(querySnapshot) => {
-                 const s_data = []
+                    s_data = []; // Clear the s_data array before updating
                     querySnapshot.forEach((doc) => {
-                       const studies = {
-                        id:doc.id,
-                        name:doc.data().name,
-                        level:doc.data().level,
-                        admission:doc.data().admission
-                       }
-                       s_data.push(studies)
-                       console.log(studies);
-                    })
-                    students.value = s_data
-                      
+                        const student = {
+                            id: doc.id,
+                            name: doc.data().name,
+                            level: doc.data().level,
+                            admission: doc.data().admission,
+                        }
+                        s_data.push(student);
                     });
-        })       
+
+    // console.log(s_data);
+    students.value = s_data;
+
+   
+});
+                })     
 
             return { 
                 students,
                 LogOut,
                 deleteStudent,
+                navigateToEditPage,
+                studentId,
                 route,
-                router
+                router,
+                studentsCollection,
              }
 
            
@@ -292,7 +310,7 @@ import{db} from '@/main.js'
     width:100%;
     position:absolute;
     left:2%;
-    top:20%;
+    top:25%;
     /* height:100vh; */
     /* font-weight:bolder; */
    

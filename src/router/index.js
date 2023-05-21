@@ -1,5 +1,12 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomePage from '../views/HomePage.vue'
+import LoginPage from '../views/LoginPage.vue'
+import RegisterPage from '../views/RegisterPage.vue'
+import AddStudent from '../views/AddStudent.vue'
+import EditStudent from '../views/EditStudent.vue'
+
+import Database from '../views/DataBase.vue'
+
 
 const routes = [
   {
@@ -10,40 +17,28 @@ const routes = [
   {
     path: '/database',
     name: 'DataBase',
-    component: () => import(/* webpackChunkName: "about" */ '../views/DataBase.vue')
+    component: Database
   },
   {
     path: '/login',
     name: 'LoginPage',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/LoginPage.vue')
+    component:LoginPage
   },
   {
     path: '/register',
     name: 'RegisterPage',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/RegisterPage.vue')
+    component: RegisterPage
   },
   {
     path: '/add',
     name: 'AddStudent',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AddStudent.vue')
+    component:AddStudent
   },
   {
-    path: '/edit/:id',
+    path: '/edit/:studentId',
     name: 'EditStudent',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/EditStudent.vue')
-  },
+    component: EditStudent
+  }
 ]
 
 const router = createRouter({

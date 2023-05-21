@@ -1,5 +1,5 @@
 <template>
-    <form class="edit-table" @submit.prevent>
+    <form class="edit-table" @submit.prevent="edit(student)">
         <h1 class="header">Edit Student</h1>
         <div class="input-group">
         <input type="text" placeholder="Enter Name...." v-model="name"/><br/>
@@ -7,7 +7,7 @@
         <input type="text" placeholder="Enter Date of Admission....." v-model="admission"/><br/>
 
        </div>
-        <button @click="edit">Done</button>
+        <button>Save</button>
         <div class="buttons">
             <div>
              <button class="btn1"><router-link class="route" to="/database">Back To DataBase</router-link></button>
@@ -21,58 +21,54 @@
 <script>
 import{ref} from 'vue'
 import {useRouter,useRoute} from 'vue-router'
-import{updateDoc,serverTimestamp,doc} from 'firebase/firestore'
+import{updateDoc,collection,doc} from 'firebase/firestore'
 import {db} from '@/main.js'
     export default {
         setup(){
-          
             const name = ref('')
             const level = ref('')
-            const admission = ref('')        
+            const admission = ref('') 
+            // const student = ref({})  
 
             const router = useRouter()
             const route = useRoute()
+            const studentId = route.params.studentId
 
-            const docId= route.params.id
-           
+            const studentsCollection = collection(db, "students")
 
-        function edit(){
-            console.log("Updating document with ID:", docId.value)
-            const docRef = doc(db, 'students',docId.value);
-            console.log("Name:", name.value)
-            console.log("Level:", level.value)
-            console.log("Admission date:", admission.value)
-        
-                    updateDoc(docRef, {
-                        name: name.value,
-                        level: level.value,
-                        admission: admission.value,
-                        updatedAt: serverTimestamp()
-                    })
+                        async function edit() {
+                                try {
+                                    console.log("Name:", name.value)
+                                    console.log("Level:", level.value)
+                                    console.log("Admission date:",admission.value)
+                                    console.log("Updating document with ID:",studentId)
 
-                    .then(()=>{
-                        console.log('Document Updated')
-                        router.push('/database')
-                    })
-                    .catch((error)=>{
-                        console.log(error)
-                    });
-            }
-          
-            
-  
-
+                                    const userDocRef = doc(studentsCollection,studentId)
+                                    await updateDoc(userDocRef, {
+                                    name: name.value,
+                                    level: level.value,
+                                    admission:admission.value,
+                                    })
+                                    console.log("Document updated successfully!")
+                                    router.push('/database')
+                                } catch (error) {
+                                    console.log("Error updating document:", error)
+                                }
+}
 
             return{
                 name,
                 level,
                 admission,
+                // student,
+                studentsCollection,
+                studentId,
                 edit,
                 router,
                 route
             }
         }
-    }
+}
 
 </script>
 

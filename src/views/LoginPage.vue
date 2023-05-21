@@ -1,11 +1,11 @@
 <template>
     <form @submit.prevent>
+        <p  class="message" v-if="errMsg">{{errMsg}}</p>
         <h1>Login Your Account</h1>
         <div class="icon-container">
             <img class="icon-image" src="../images/user.png" />
             <!-- <h2>Admin</h2> -->
         </div>
-        <p  class="message" v-if="errMsg">{{errMsg}}</p>
     <div class="input-box">
         <div class="input-class">  
         <input type="text" placeholder="Enter Your Email..."  v-model="email" />
@@ -58,7 +58,7 @@ import{getAuth,signInWithEmailAndPassword} from 'firebase/auth'
       router.replace('/database')
    })
    .catch((error)=>{
-    alert(error.message)
+    // alert(error.message)
     console.log(error.code)
     if (error.code === 'auth/invalid-email') {
          errMsg.value="The Email is incorrect"
@@ -97,7 +97,7 @@ import{getAuth,signInWithEmailAndPassword} from 'firebase/auth'
 h1{
     font-family:Arial, Helvetica, sans-serif;
     position:relative;
-    top:19%;
+    top:22%;
     color:white;
 }
 form{
