@@ -231,7 +231,7 @@ button{
 }
 footer{
     position:relative;
-    top:60%;
+    top:57%;
     color:white;
     font-style:bold;
     font-size:1.3rem;

@@ -453,7 +453,7 @@ import{db} from '@/main.js'
    margin-top:10px;
    position:relative;
     top:7%;
-    right:50%;
+    right:55%;
    /* margin-left:30px; */
    /* border:1px solid white; */
    /* border-bottom:3px solid white; */
@@ -462,7 +462,7 @@ import{db} from '@/main.js'
     width:100%;
     position:relative;
     bottom:20%;
-    right:15%;
+    right:18%;
     /* border:1px solid white; */
     /* margin-right:120px; */
     margin-top:10px;
