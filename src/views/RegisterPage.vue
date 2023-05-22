@@ -180,7 +180,7 @@ h1{
     .icon-container{
     position:relative;
     left:40%;
-    top:15%;
+    top:12%;
 }
     .icon-image{
        width:70px;
@@ -231,7 +231,7 @@ button{
 }
 footer{
     position:relative;
-    top:50%;
+    top:60%;
     color:white;
     font-style:bold;
     font-size:1.3rem;
