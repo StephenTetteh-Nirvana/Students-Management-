@@ -325,13 +325,13 @@ import{db} from '@/main.js'
     width:100%;
     position:absolute;
     left:2%;
-    top:30%;
+    top:25%;
     /* height:100vh; */
     /* font-weight:bolder; */
    
 }
 .tr-head{
-    border:1px solid white;
+    /* border:1px solid white; */
     margin-top:10px;
 }
 .table-head{
@@ -377,22 +377,22 @@ import{db} from '@/main.js'
     padding:5px 5px;
 }
 .name{
-    border:1px solid white;
-    width:5%;
+    /* border:1px solid white; */
+    width:8%;
     font-size:13px;
     text-align:center;
     /* padding-left:10px; */
 }
 .level{
-    border:1px solid white;
+    /* border:1px solid white; */
     /* padding-right:100px; */
-    width:4%;
+    width:5%;
     text-align:center;
-    padding-left:5px;
+    padding-left:2px;
     font-size:13px;
 }
 .admission{
-    border:1px solid white;
+    /* border:1px solid white; */
     width:10%;
     text-align:center;
     font-size:10px;
@@ -418,6 +418,7 @@ import{db} from '@/main.js'
     border:none;
     margin-bottom:10px;
     margin-top:10px;
+    margin-left:10px;
     /* margin-left:30px; */
     font-size:11px;
     padding:5px 5px;
@@ -427,7 +428,7 @@ import{db} from '@/main.js'
     background-color:rgb(255, 57, 57);
     color:white;
     border-radius:5px;
-    margin-left:12px;
+    margin-left:15px;
     margin-bottom:10px;
     border:none;
     margin-top:10px;
@@ -435,30 +436,37 @@ import{db} from '@/main.js'
     padding:5px 5px;
 }
 .head-1{
+    /* border:1px solid white; */
+    width:70%;
+    height:18px;
+    /* margin-top:50px; */
+    text-align:center;
     position:relative;
-    right:80%;
-    border-bottom:3px solid white;
-   /* border:1px solid white; */
-
+    right:85%;
+    top:7%;
+    /* border-bottom:3px solid white; */
+    /* margin-left:60px; */
 }
 .head-2{
+    width:70%;
+    height:18px;
+   margin-top:10px;
    position:relative;
-   /* width:30%; */
-    right:80%;
-    border-bottom:3px solid white;
-
+    top:7%;
+    right:50%;
+   /* margin-left:30px; */
    /* border:1px solid white; */
+   /* border-bottom:3px solid white; */
 }
 .head-3{
+    width:100%;
     position:relative;
-    width:170%;
-    right:80%;
-    bottom:10%;
-    top:5%;
-    text-align:center;
-    border-bottom:3px solid white;
+    bottom:20%;
+    /* border:1px solid white; */
+    /* margin-right:120px; */
+    margin-top:10px;
+    /* text-align:center; */
+}
     /* border:1px solid white; */
 }
-}
-
 </style>
