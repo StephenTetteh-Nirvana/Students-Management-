@@ -180,16 +180,16 @@ import{db} from '@/main.js'
 }
 .name{
     /* border:1px solid white; */
-    width:10%;
+    width:12%;
     font-size:20px;
-    padding-left:20px;
+    /* padding-left:10px; */
 }
 .level{
     /* border:1px solid white; */
     /* padding-right:100px; */
-    width:10%;
-    text-align:center;
-    padding-left:50px;
+    width:4%;
+    /* text-align:center; */
+    padding-left:25px;
     font-size:20px;
 }
 .admission{
@@ -197,7 +197,7 @@ import{db} from '@/main.js'
     width:10%;
     text-align:center;
     font-size:20px;
-    padding-left:95px;
+    padding-left:120px;
 }
 .edit-td{
     /* border:1px solid white; */
@@ -243,19 +243,23 @@ import{db} from '@/main.js'
     width:5%;
 }
 .head-1{
+    /* border:1px solid white; */
+    width:30%;
     margin-top:10px;
-    margin-left:60px;
+    /* margin-left:60px; */
 }
 .head-2{
+    width:30%;
    margin-top:10px;
-   margin-left:37px;
+   /* margin-left:30px; */
    /* border:1px solid white; */
 }
 .head-3{
+    width:100%;
     /* border:1px solid white; */
-    margin-right:80px;
+    /* margin-right:120px; */
     margin-top:10px;
-    text-align:center;
+    /* text-align:center; */
 }
 .data{
     display:grid;
@@ -321,7 +325,7 @@ import{db} from '@/main.js'
     width:100%;
     position:absolute;
     left:2%;
-    top:25%;
+    top:30%;
     /* height:100vh; */
     /* font-weight:bolder; */
    
@@ -340,17 +344,24 @@ import{db} from '@/main.js'
     border-bottom:none;
 }
 .info{
-    width:40%;
+    /* border:1px solid black; */
+    width:30%;
+    height:60px;
+    text-align:center;
     position:absolute;
-    top:13%;
-    left:75%;
-    /* border:1px solid white; */
+    left:67%;
 }
 .btn-logout{
-    position:absolute;
-    left:35%;
-    top:100%;
-    padding:5px 20px;
+    background:red;
+    color:white;
+    position:relative;
+    top:5%;
+    border:none;
+    border-radius:5px;
+    /* bottom:10%; */
+    font-size:11px;
+    padding:5px 28px;
+    cursor:pointer;
 }
 .btn1{
     background:rgb(3, 201, 3); 
@@ -358,21 +369,34 @@ import{db} from '@/main.js'
     border-radius:5px;
     border:none;
     cursor:pointer;
+    position:relative;
+    top:10%;
+    left:5%;
+    /* right:37%; */
     font-size:11px;
     padding:5px 5px;
 }
 .name{
-    /* border:1px solid white; */
-    width:4%;
-    font-size:14px;
+    border:1px solid white;
+    width:5%;
+    font-size:13px;
+    text-align:center;
     /* padding-left:10px; */
 }
 .level{
-    /* border:1px solid white; */
+    border:1px solid white;
     /* padding-right:100px; */
-    width:5%;
+    width:4%;
     text-align:center;
-    font-size:14px;
+    padding-left:5px;
+    font-size:13px;
+}
+.admission{
+    border:1px solid white;
+    width:10%;
+    text-align:center;
+    font-size:10px;
+    /* padding-left:120px; */
 }
 .admission{
     /* border:1px solid white; */
@@ -403,7 +427,7 @@ import{db} from '@/main.js'
     background-color:rgb(255, 57, 57);
     color:white;
     border-radius:5px;
-    margin-left:0px;
+    margin-left:12px;
     margin-bottom:10px;
     border:none;
     margin-top:10px;
@@ -412,14 +436,15 @@ import{db} from '@/main.js'
 }
 .head-1{
     position:relative;
-    right:120%;
+    right:80%;
     border-bottom:3px solid white;
    /* border:1px solid white; */
 
 }
 .head-2{
    position:relative;
-    right:112%;
+   /* width:30%; */
+    right:80%;
     border-bottom:3px solid white;
 
    /* border:1px solid white; */
@@ -427,7 +452,7 @@ import{db} from '@/main.js'
 .head-3{
     position:relative;
     width:170%;
-    right:160%;
+    right:80%;
     bottom:10%;
     top:5%;
     text-align:center;
