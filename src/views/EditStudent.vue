@@ -146,7 +146,7 @@ button{
 }
 .header{
     font-family:Arial, Helvetica, sans-serif;
-    margin-left:40px;
+    margin-left:20px;
     margin-top:20px;
 }
 
@@ -156,7 +156,7 @@ input[type=text]{
     margin-top:30px;
     font-size:15px;
     border-radius:5px;
-    margin-left:40px;
+    margin-left:20px;
 }
 button{
     background:rgb(53, 64, 216);
@@ -168,16 +168,17 @@ button{
     border-radius:3px;
     border:none;
     margin-top:20px;
-   margin-left:40px;
+   margin-left:20px;
     font-size:15px;
     cursor:pointer;
  }
  .btn1{
+    border:1px solid white;
     background:transparent; 
     color:white;
     text-align:center;
     width:50%;
-    padding:5px 10px;
+    padding:5px 15px;
     border-radius:10px;
     border:1px solid yellow;
     margin-top:50px;
