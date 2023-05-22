@@ -386,25 +386,25 @@ import{db} from '@/main.js'
 .level{
     /* border:1px solid white; */
     /* padding-right:100px; */
-    width:5%;
+    width:7%;
     text-align:center;
-    padding-left:2px;
+    padding-left:4px;
     font-size:13px;
 }
-.admission{
+/* .admission{
     /* border:1px solid white; */
-    width:10%;
+    /* width:10%;
     text-align:center;
     font-size:10px;
-    /* padding-left:120px; */
-}
+    padding-left:5px; */
+
 .admission{
     /* border:1px solid white; */
-    width:5%;
+     width:5%; 
     margin-left:20px;
     text-align:center;
-    font-size:14px;
-    padding-left:5px;
+    font-size:12px;
+    padding-left:15px;
 }
 .edit-td{
     /* border:1px solid white; */
@@ -418,7 +418,7 @@ import{db} from '@/main.js'
     border:none;
     margin-bottom:10px;
     margin-top:10px;
-    margin-left:10px;
+    margin-left:20px;
     /* margin-left:30px; */
     font-size:11px;
     padding:5px 5px;
@@ -428,7 +428,7 @@ import{db} from '@/main.js'
     background-color:rgb(255, 57, 57);
     color:white;
     border-radius:5px;
-    margin-left:15px;
+    margin-left:25px;
     margin-bottom:10px;
     border:none;
     margin-top:10px;
@@ -462,6 +462,7 @@ import{db} from '@/main.js'
     width:100%;
     position:relative;
     bottom:20%;
+    right:15%;
     /* border:1px solid white; */
     /* margin-right:120px; */
     margin-top:10px;

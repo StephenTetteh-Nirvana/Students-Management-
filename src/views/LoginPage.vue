@@ -226,7 +226,7 @@ footer{
     height:100px;
     width:80%;
     position:absolute;
-    top:37%;
+    top:40%;
     left:10%;
 }
 input[type=text]{
@@ -260,7 +260,7 @@ button{
 }
 footer{
     position:relative;
-    top:70%;
+    top:50%;
     color:white;
     font-style:bold;
     font-size:1.3rem;
